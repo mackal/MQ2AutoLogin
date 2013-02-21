@@ -100,24 +100,7 @@ struct _ServerData {
 };
 
 _ServerData ServerData[] = {
-    {"vox",        158},
-    {"trakanon",   154},
-    {"fippy",      156},
-    {"vulak",      157},
-    {"mayong",     163},
-    {"antonius",    68},
-    {"bertox",      53},
-    {"bristle",      9},
-    {"cazic",       49},
-    {"drinal",      40},
-    {"erollisi",    48},
-    {"firiona",     77},
-    {"luclin",      76},
-    {"povar",        5},
-    {"rathe",       46},
-    {"tunare",      57},
-    {"xegony",      51},
-    {"zek",         54},
+    {"peqtgc",       1}, // Only true using PEQ Login Server
     {0, 0},
 };
 
@@ -547,7 +530,7 @@ PLUGIN_API VOID SetGameState(DWORD GameState)
 {
     if(!dwEQMainBase)
     {
-        if(DWORD n = _FindPattern(FixOffset(0x500000), 0x100000, eqmainPattern, eqmainMask))
+        if(DWORD n = _FindPattern(0x500000, 0x100000, eqmainPattern, eqmainMask))
         {
             n = _GetDWordAt(n, 2);
             dwEQMainBase = (DWORD*)n;
@@ -674,7 +657,7 @@ inline bool WindowActive(char *name)
 {
     if(*dwEQMainBase)
         if(CXWnd2 *pWnd = WindowMap[name])
-            if(pWnd->dShow)
+            if(pWnd->xShow)
                 return true;
     return false;
 }
